@@ -1,0 +1,9 @@
+⚠️ NOTA SOBRE A BASE DE DADOS
+
+Devido ao limite de tamanho de arquivos do GitHub (máximo 100MB), o arquivo bruto de votação de Santa Catarina (679,39 MB) não foi incluído neste repositório.
+
+Onde encontrar os dados brutos:
+Os dados podem ser baixados diretamente no Portal de Dados Abertos do TSE (Resultados 2022 por Seção Eleitoral).
+
+Onde ver os dados tratados:
+Todo o tratamento e as 2.178.931 linhas já estão processadas e comprimidas dentro do modelo de dados do arquivo Dashboard_SC_2022.xlsx na raiz deste projeto.
