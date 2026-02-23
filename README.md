@@ -1,70 +1,101 @@
-# 🗳️ Inteligência Eleitoral & Análise Socioeconômica
-**(Excel + Power Pivot + DAX – Santa Catarina 2022)**
+# 🗳️ Análise Eleitoral & Socioeconômica (SC 2022)
+**(Excel + Power Pivot + DAX + Star Schema)**
 
-Projeto completo de análise de dados utilizando **Excel (Power Pivot)** e **Linguagem DAX** para investigar o comportamento eleitoral em Santa Catarina, com foco em:
-* **Desempenho por Candidato e Partido**
-* **Correlação entre PIB per Capita e Votos**
-* **Perfil de Rendimento Domiciliar (Censo 2022)**
-* **Categorização socioeconômica municipal**
-* **Insights estratégicos para análise de gabinete**
+Projeto de Business Intelligence que integra dados eleitorais do TSE (**2,1 milhões de registros**) com indicadores socioeconômicos do IBGE, com o objetivo de analisar a distribuição proporcional de votos em diferentes faixas de PIB e renda municipal.
 
 ---
 
 ### 📚 1. Objetivo do Projeto
 
-O objetivo foi construir uma análise profunda e executiva sobre o cenário eleitoral de Santa Catarina em 2022, cruzando o Big Data das urnas com a realidade econômica do IBGE para identificar: Como a riqueza municipal influencia a preferência partidária e quais regiões apresentam os maiores contrastes entre renda e voto.
+O objetivo foi construir uma análise profunda e executiva sobre o cenário eleitoral de Santa Catarina em 2022, cruzando o Big Data das urnas com a realidade econômica do IBGE para identificar padrões de comportamento eleitoral baseados na riqueza municipal.
 
-**Os dados são baseados em fontes oficiais públicas: [TSE (Resultados por Seção)](https://dadosabertos.tse.jus.br/), [IBGE (Censo 2022)](https://www.ibge.gov.br/) e [SIDRA (Banco de Tabelas e Estatísticas)](https://dadosabertos.tse.jus.br/).**
+**Os dados são baseados em fontes oficiais públicas: [TSE (Resultados por Seção)](https://dadosabertos.tse.jus.br/), [IBGE (Censo 2022)](https://www.ibge.gov.br/) e [SIDRA](https://sidra.ibge.gov.br/).**
 
-Toda a solução foi feita do zero:
+Toda a solução foi desenvolvida focando em:
 
-✔ **Limpeza e ETL massivo** no Excel (Power Query)
-
-✔ **Gestão de Big Data** (2.1M+ de linhas) via Power Pivot
+✔ **Processamento de Big Data** (2.1M+ de linhas) via Power Pivot
 
 ✔ **Modelagem Star Schema** no Modelo de Dados do Excel
 
-✔ **DAX avançado** para classificação de faixas de PIB e Renda
+✔ **DAX Avançado** para classificação socioeconômica
 
-✔ **Dashboard executivo** com navegação sincronizada
-
-✔ **Insights socioeconômicos**
+✔ **Dashboard Executivo** com foco em inteligência de dados
 
 ---
 
 ### 🏗️ 2. Engenharia de Dados (O Motor do Projeto)
 
-Nesta etapa, o foco foi garantir que o Excel processasse um volume de dados 2x maior que seu limite padrão:
+Nesta etapa, o foco foi garantir a performance analítica superando os limites tradicionais de planilhas:
 
-* **Processamento de Big Data:** Utilização do motor **xVelocity (Power Pivot)** para gerenciar **2.178.931 registros** de votação sem perda de performance ou travamentos.
-* **Data Cleaning (Higienização):** * **Base IBGE:** Remoção de ruídos estatísticos e exclusão de colunas irrelevantes para manter o foco total em PIB e Renda.
-    * **Base Candidatos:** Refinação do dicionário em conformidade com a **LGPD**, eliminando dados sensíveis e focando em chaves analíticas.
-* **Tipagem de Dados:** Conversão rigorosa de identificadores para **Texto**, garantindo a integridade de códigos com zeros à esquerda e evitando somas acidentais de IDs.
+* **Processamento em Memória:** Utilização do engine **xVelocity (Power Pivot)** para gerenciamento e análise eficiente de **2.178.931 registros** de votação sem perda de performance.
+* **ETL e Padronização (Power Query):** * **Normalização de Chaves:** Ajuste de identificadores para garantir a integridade referencial entre as bases do TSE e IBGE.
+    * **Tipagem de Dados:** Conversão de IDs para **Texto**, preservando zeros à esquerda e evitando erros de integridade.
+    * **Higienização:** Remoção de ruídos estatísticos e colunas irrelevantes para otimizar o peso do modelo.
 
 ---
 
 ### 📊 3. Arquitetura do Modelo (Star Schema)
 
-O modelo foi estruturado seguindo as melhores práticas de Business Intelligence para permitir cruzamentos rápidos:
+O modelo foi estruturado seguindo as melhores práticas de Business Intelligence para permitir cruzamentos multidimensionais rápidos:
 
-* **Tabela Fato (`votacao_secao`):** Centraliza os votos transacionais de SC.
+* **Tabela Fato (`votacao_secao`):** Centraliza os votos transacionais.
 * **Tabelas de Dimensão:**
     * **Dimensão IBGE:** Cadastro de cidades com dados de PIB/Renda.
-    * **Dimensão Candidatos:** Identificação de nomes, números e legendas.
-* **Relacionamentos:** Conexões robustas via chaves únicas, garantindo que o filtro de um município reflita instantaneamente em todos os indicadores socioeconômicos.
+    * **Dimensão Candidatos/Partidos:** Identificação de legendas e nomes.
+    * **Dimensão Calendário:** Estrutura temporal para análises cronológicas.
+
+
 
 ---
 
-### 📈 4. Dashboard Interativo & BI
+### 📈 4. Análises Desenvolvidas com DAX
+
+Fórmulas inteligentes que transformam dados brutos em insights estratégicos:
+
+* **Classificação Socioeconômica Dinâmica:** Categorização automática dos municípios em: *Elite Econômica, PIB Alto, PIB Médio e PIB Baixo*.
+* **Análise Proporcional (Market Share):** Cálculo de participação percentual por partido utilizando `% do Total da Linha`, permitindo comparação justa entre municípios de diferentes portes.
+* **Análise de Extremos Econômicos:** Comparação direta entre os 5 municípios com maior PIB vs. os 5 com menor PIB.
+
+> ⚠️ **Nota:** A análise considera indicadores médios municipais e não características individuais dos eleitores.
+
+---
+
+### 🎯 5. Entrega Analítica (Dashboard)
 
 Interface desenhada para análise executiva e tomada de decisão:
 
-* **Segmentação Executiva:** Filtro de municípios posicionado estrategicamente na Coluna B com design em **Cinza Neutro**.
-* **Análise Multidimensional:** Sincronização completa entre tabelas de votos, tabelas socioeconômicas e gráficos de desempenho.
-* **Categorização por DAX:** Fórmulas inteligentes que classificam automaticamente os municípios em: *Elite Econômica, PIB Alto, PIB Médio e PIB Baixo*.
+* **Navegação Sincronizada:** Filtros de municípios que refletem instantaneamente em todos os indicadores.
+* **Visualização Comparativa:** Gráficos estruturados para leitura rápida da dominância partidária por faixa de renda.
+* **Estrutura Executiva:** Design limpo, focado em tabelas dinâmicas conectadas diretamente ao Modelo de Dados.
 
 ---
 
-### 🔗 5. Fontes de Dados
-* **TSE:** Resultados de votação por seção eleitoral (SC - 2022).
-* **IBGE:** Indicadores de Rendimento e PIB Municipal (Censo 2022).
+### 🧠 Competências Demonstradas
+* **ETL:** Power Query
+* **Modelagem:** Star Schema & xVelocity Engine
+* **Linguagem:** DAX (Medidas e Colunas Calculadas)
+* **Gestão de Dados:** Big Data no Excel (2.1M+ registros)
+* **Repositório:** Organização estruturada no GitHub
+
+---
+
+### 🙋‍♂️  Sobre o Autor
+
+**TIAGO SANTOS**
+* Analista de Dados • Excel | SQL | Power BI
+* Foco em análises de e-commerce, logística e performance comercial.
+
+---
+
+## ⚖️ Licença / Aviso Legal
+
+Todo o conteúdo deste repositório foi desenvolvido para fins **educacionais e de portfólio pessoal**.
+Você é livre para usar, modificar e compartilhar os arquivos, desde que mantenha os devidos créditos ao autor original.
+
+---
+
+## 🤝 Conecte-se comigo
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Tiago%20Magalhães%20Santos-blue?logo=linkedin)](https://www.linkedin.com/in/tiago-magalh%C3%A3es-santos-0b6ab0b6/)
+
+---
