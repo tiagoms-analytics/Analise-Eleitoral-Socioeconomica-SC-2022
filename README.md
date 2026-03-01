@@ -1,6 +1,8 @@
 # 🗳️ Análise Eleitoral & Socioeconômica (SC 2022)
 **(Excel + Power Pivot + DAX + Star Schema)**
 
+> 🔗 **[CLIQUE AQUI PARA ACESSAR O DASHBOARD INTERATIVO](https://app.powerbi.com/view?r=eyJrIjoiMmMxNDk3ZGMtNjJlYS00NjM2LTg1NDUtNzRiY2VjZTllNTNkIiwidCI6ImYwYzhjMGRmLTQ5MWItNDMyYy1iZmNjLTM5ZjljNzZiYzI2YiJ9)**
+
 Projeto de Business Intelligence que integra dados eleitorais do TSE (**2,1 milhões de registros**) com indicadores socioeconômicos do IBGE, com o objetivo de analisar a distribuição proporcional de votos em diferentes faixas de PIB e renda municipal.
 
 ---
